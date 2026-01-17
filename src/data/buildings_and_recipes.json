@@ -27,14 +27,6 @@
         },
         "inputs": [
         ]
-      },
-      {
-        "output": {
-          "id": "sulphur_ore",
-          "amount_per_minute": 75
-        },
-        "inputs": [
-        ]
       }
     ]
   },
@@ -46,7 +38,22 @@
       {
         "output": {
           "id": "helium_3",
-          "amount_per_minute": 120
+          "amount_per_minute": 240
+        },
+        "inputs": [
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sulphur_extractor",
+    "name": "Sulphur Extractor",
+    "power": 40,
+    "recipes": [
+      {
+        "output": {
+          "id": "sulphur_ore",
+          "amount_per_minute": 240
         },
         "inputs": [
         ]
