@@ -744,36 +744,36 @@
   {
     "id": "refinery",
     "name": "Refinery",
-    "power": 10,
+    "power": 40,
     "recipes": [
       {
         "output": {
           "id": "sulphuric_acid",
-          "amount_per_minute": 90
+          "amount_per_minute": 120
         },
         "inputs": [
           {
             "id": "sulphur_ore",
-            "amount_per_minute": 120
+            "amount_per_minute": 240
           },
           {
-            "id": "ceramics",
-            "amount_per_minute": 30
+            "id": "chemicals",
+            "amount_per_minute": 120
           }
         ]
       },
       {
         "output": {
           "id": "pressurised_helium",
-          "amount_per_minute": 90
+          "amount_per_minute": 30
         },
         "inputs": [
           {
             "id": "helium_3",
-            "amount_per_minute": 120
+            "amount_per_minute": 30
           },
           {
-            "id": "ceramics",
+            "id": "sulphur_ore",
             "amount_per_minute": 30
           }
         ]
