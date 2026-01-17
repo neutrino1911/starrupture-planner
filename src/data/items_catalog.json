@@ -1,32 +1,32 @@
 [
   {
-    "id": "ore_titanium",
+    "id": "titanium_ore",
     "name": "Titanium Ore",
     "type": "raw"
   },
   {
-    "id": "ore_wolfram",
+    "id": "wolfram_ore",
     "name": "Wolfram Ore",
     "type": "raw"
   },
   {
-    "id": "ore_calcium",
+    "id": "calcium_ore",
     "name": "Calcium Ore",
     "type": "raw"
   },
   {
-    "id": "ore_sulphur",
+    "id": "sulphur_ore",
     "name": "Sulphur Ore",
     "type": "raw"
   },
   {
-    "id": "ore_goethite",
+    "id": "goethite_ore",
     "name": "Goethite Ore",
     "type": "raw"
   },
   {
-    "id": "helium",
-    "name": "Helium",
+    "id": "helium_3",
+    "name": "Helium-3",
     "type": "raw"
   },
   {
@@ -35,27 +35,27 @@
     "type": "raw"
   },
   {
-    "id": "bar_titanium",
+    "id": "titanium_bar",
     "name": "Titanium Bar",
     "type": "processed"
   },
   {
-    "id": "bar_wolfram",
+    "id": "wolfram_bar",
     "name": "Wolfram Bar",
     "type": "processed"
   },
   {
-    "id": "block_calcium",
+    "id": "calcium_block",
     "name": "Calcium Block",
     "type": "processed"
   },
   {
-    "id": "powder_calcium",
+    "id": "calcium_powder",
     "name": "Calcium Powder",
     "type": "processed"
   },
   {
-    "id": "powder_wolfram",
+    "id": "wolfram_powder",
     "name": "Wolfram Powder",
     "type": "processed"
   },
@@ -75,8 +75,13 @@
     "type": "processed"
   },
   {
-    "id": "explosive",
-    "name": "Explosive",
+    "id": "chemicals",
+    "name": "Chemicals",
+    "type": "processed"
+  },
+  {
+    "id": "pressurised_helium",
+    "name": "Pressurised Helium",
     "type": "processed"
   },
   {
@@ -90,6 +95,11 @@
     "type": "processed"
   },
   {
+    "id": "hardening_agent",
+    "name": "Hardening Agent",
+    "type": "processed"
+  },
+  {
     "id": "supermagnet",
     "name": "Supermagnet",
     "type": "processed"
@@ -100,8 +110,13 @@
     "type": "processed"
   },
   {
-    "id": "basic_building",
+    "id": "basic_building_mat",
     "name": "Basic Building Material",
+    "type": "component"
+  },
+  {
+    "id": "intermediate_building_mat",
+    "name": "Intermediate Building Material",
     "type": "component"
   },
   {
@@ -160,10 +175,10 @@
     "type": "component"
   },
   {
-    "id": "syringe",
-    "name": "Syringe",
+    "id": "applicator",
+    "name": "Applicator",
     "type": "component"
-  },    
+  },
   {
     "id": "inductor",
     "name": "Inductor",
@@ -171,7 +186,12 @@
   },
   {
     "id": "valve",
-    "name": "Valve",  
+    "name": "Valve",
+    "type": "component"
+  },
+  {
+    "id": "electromagnetic_coil",
+    "name": "Electromagnetic Coil",
     "type": "component"
   },
   {
@@ -180,13 +200,23 @@
     "type": "component"
   },
   {
+    "id": "impeller",
+    "name": "Impeller",
+    "type": "component"
+  },
+  {
     "id": "nozzle",
     "name": "Nozzle",
     "type": "component"
   },
   {
-    "id": "pressure_tank",
-    "name": "Pressure Tank",
+    "id": "battery",
+    "name": "Battery",
+    "type": "component"
+  },
+  {
+    "id": "pump",
+    "name": "Pump",
     "type": "component"
   },
   {
@@ -197,6 +227,16 @@
   {
     "id": "standard_ammo",
     "name": "Standard Ammo",
+    "type": "ammo"
+  },
+  {
+    "id": "shotgun_ammo",
+    "name": "Shotgun Ammo",
+    "type": "ammo"
+  },
+  {
+    "id": "heavy_ammo",
+    "name": "Heavy Ammo",
     "type": "ammo"
   }
 ]

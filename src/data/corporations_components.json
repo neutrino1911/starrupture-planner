@@ -6,12 +6,12 @@
         "level": 1,
         "components": [
           {
-            "id": "bar_titanium",
+            "id": "titanium_bar",
             "points": 2,
             "cost": 200
           },
           {
-            "id": "block_calcium",
+            "id": "calcium_block",
             "points": 1,
             "cost": 200
           }
@@ -80,7 +80,7 @@
         "level": 5,
         "components": [
           {
-            "id": "syringe",
+            "id": "applicator",
             "points": 22,
             "cost": null
           }
@@ -103,12 +103,12 @@
         "level": 1,
         "components": [
           {
-            "id": "bar_wolfram",
+            "id": "wolfram_bar",
             "points": 2,
             "cost": 200
           },
           {
-            "id": "bar_titanium",
+            "id": "titanium_bar",
             "points": 1,
             "cost": 200
           }
@@ -218,12 +218,12 @@
         "level": 1,
         "components": [
           {
-            "id": "block_calcium",
+            "id": "calcium_block",
             "points": 2,
             "cost": 200
           },
           {
-            "id": "bar_wolfram",
+            "id": "wolfram_bar",
             "points": 1,
             "cost": 200
           }
@@ -274,7 +274,7 @@
         "level": 4,
         "components": [
           {
-            "id": "explosive",
+            "id": "chemicals",
             "points": 14,
             "cost": null
           }
@@ -312,12 +312,12 @@
         "level": 1,
         "components": [
           {
-            "id": "bar_titanium",
+            "id": "titanium_bar",
             "points": 2,
             "cost": 200
           },
           {
-            "id": "bar_wolfram",
+            "id": "wolfram_bar",
             "points": 1,
             "cost": 200
           }
@@ -406,12 +406,12 @@
         "level": 1,
         "components": [
           {
-            "id": "bar_wolfram",
+            "id": "wolfram_bar",
             "points": 2,
             "cost": 200
           },
           {
-            "id": "bar_titanium",
+            "id": "titanium_bar",
             "points": 1,
             "cost": 200
           }
@@ -519,7 +519,7 @@
         "level": 7,
         "components": [
           {
-            "id": "pressure_tank",
+            "id": "pump",
             "points": 70,
             "cost": null
           }

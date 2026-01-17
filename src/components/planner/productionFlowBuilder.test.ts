@@ -1,6 +1,6 @@
 /**
  * Tests for buildProductionFlow function
- * 
+ *
  * This test suite covers various scenarios for the production flow builder:
  * - Simple linear chains
  * - Complex chains with multiple inputs
@@ -20,7 +20,7 @@ const buildings = [
         power: 10,
         recipes: [
             {
-                output: { id: 'ore_titanium', amount_per_minute: 75 },
+                output: { id: 'titanium_ore', amount_per_minute: 75 },
                 inputs: []
             }
         ]
@@ -31,9 +31,9 @@ const buildings = [
         power: 10,
         recipes: [
             {
-                output: { id: 'bar_titanium', amount_per_minute: 60 },
+                output: { id: 'titanium_bar', amount_per_minute: 60 },
                 inputs: [
-                    { id: 'ore_titanium', amount_per_minute: 90 }
+                    { id: 'titanium_ore', amount_per_minute: 90 }
                 ]
             }
         ]
@@ -46,13 +46,13 @@ const buildings = [
             {
                 output: { id: 'titanium_beam', amount_per_minute: 30 },
                 inputs: [
-                    { id: 'bar_titanium', amount_per_minute: 60 }
+                    { id: 'titanium_bar', amount_per_minute: 60 }
                 ]
             },
             {
                 output: { id: 'titanium_sheet', amount_per_minute: 60 },
                 inputs: [
-                    { id: 'bar_titanium', amount_per_minute: 30 }
+                    { id: 'titanium_bar', amount_per_minute: 30 }
                 ]
             }
         ]
@@ -83,7 +83,7 @@ const corporations = [
                 level: 1,
                 components: [
                     {
-                        id: 'bar_titanium',
+                        id: 'titanium_bar',
                         points: 2,
                         cost: 200
                     }
@@ -127,35 +127,35 @@ describe('buildProductionFlow', () => {
     describe('Simple Linear Chain', () => {
         it('should build a simple chain from raw material to processed material', () => {
             const result = buildProductionFlow({
-                targetItemId: 'bar_titanium',
+                targetItemId: 'titanium_bar',
                 targetAmount: 60
             }, buildings, corporations, levels);
 
-            // Should have 2 production nodes + 1 launcher node (bar_titanium is used by corporations)
+            // Should have 2 production nodes + 1 launcher node (titanium_bar is used by corporations)
             expect(result.nodes).toHaveLength(3);
             expect(result.edges).toHaveLength(2); // 1 production edge + 1 edge to launcher
 
             // Check ore excavator node
             const oreNode = result.nodes.find(n => n.buildingId === 'ore_excavator');
             expect(oreNode).toBeDefined();
-            expect(oreNode!.outputItem).toBe('ore_titanium');
+            expect(oreNode!.outputItem).toBe('titanium_ore');
             expect(oreNode!.buildingCount).toBe(1.2); // 90/75
 
             // Check smelter node
             const smelterNode = result.nodes.find(n => n.buildingId === 'smelter');
             expect(smelterNode).toBeDefined();
-            expect(smelterNode!.outputItem).toBe('bar_titanium');
+            expect(smelterNode!.outputItem).toBe('titanium_bar');
             expect(smelterNode!.buildingCount).toBe(1); // 60/60
 
             // Check edge
             const edge = result.edges[0];
-            expect(edge.itemId).toBe('ore_titanium');
+            expect(edge.itemId).toBe('titanium_ore');
             expect(edge.amount).toBe(90);
         });
 
         it('should handle fractional building counts correctly', () => {
             const result = buildProductionFlow({
-                targetItemId: 'bar_titanium',
+                targetItemId: 'titanium_bar',
                 targetAmount: 30 // Half the default output
             }, buildings, corporations, levels);
 
@@ -219,7 +219,7 @@ describe('buildProductionFlow', () => {
 
     describe('Multiple Consumers (Shared Production)', () => {
         it('should correctly handle multiple consumers of the same item', () => {
-            // This tests the core bug that was fixed - multiple consumers should 
+            // This tests the core bug that was fixed - multiple consumers should
             // result in consolidated demand, not duplicate producers
             const result = buildProductionFlow({
                 targetItemId: 'titanium_housing',
@@ -268,7 +268,7 @@ describe('buildProductionFlow', () => {
     describe('Raw Material Handling', () => {
         it('should handle raw materials without creating extra nodes', () => {
             const result = buildProductionFlow({
-                targetItemId: 'ore_titanium',
+                targetItemId: 'titanium_ore',
                 targetAmount: 150
             }, buildings, corporations, levels);
 
@@ -277,7 +277,7 @@ describe('buildProductionFlow', () => {
 
             const node = result.nodes[0];
             expect(node.buildingId).toBe('ore_excavator');
-            expect(node.outputItem).toBe('ore_titanium');
+            expect(node.outputItem).toBe('titanium_ore');
             expect(node.buildingCount).toBe(2); // 150/75
         });
     });
@@ -285,7 +285,7 @@ describe('buildProductionFlow', () => {
     describe('Edge Cases and Error Handling', () => {
         it('should handle zero target amount gracefully', () => {
             const result = buildProductionFlow({
-                targetItemId: 'bar_titanium',
+                targetItemId: 'titanium_bar',
                 targetAmount: 0
             }, buildings, corporations, levels);
 
@@ -312,7 +312,7 @@ describe('buildProductionFlow', () => {
 
         it('should handle very small amounts correctly', () => {
             const result = buildProductionFlow({
-                targetItemId: 'bar_titanium',
+                targetItemId: 'titanium_bar',
                 targetAmount: 0.1
             }, buildings, corporations, levels);
 
@@ -369,7 +369,7 @@ describe('buildProductionFlow', () => {
     describe('Data Structure Validation', () => {
         it('should return properly structured FlowNode objects', () => {
             const result = buildProductionFlow({
-                targetItemId: 'bar_titanium',
+                targetItemId: 'titanium_bar',
                 targetAmount: 60
             }, buildings, corporations, levels);
 
@@ -397,7 +397,7 @@ describe('buildProductionFlow', () => {
                     expect(node).toHaveProperty('pointsPerItem');
                     expect(node).toHaveProperty('launchTime');
                     expect(node).toHaveProperty('totalPoints');
-                    
+
                     expect(typeof (node as any).pointsPerItem).toBe('number');
                     expect(typeof (node as any).launchTime).toBe('number');
                     expect(typeof (node as any).totalPoints).toBe('number');
@@ -407,7 +407,7 @@ describe('buildProductionFlow', () => {
 
         it('should return properly structured FlowEdge objects', () => {
             const result = buildProductionFlow({
-                targetItemId: 'bar_titanium',
+                targetItemId: 'titanium_bar',
                 targetAmount: 60
             }, buildings, corporations, levels);
 
@@ -430,15 +430,15 @@ describe('buildProductionFlow', () => {
     describe('Orbital Cargo Launcher', () => {
         it('should add Orbital Cargo Launcher for items used by corporations', () => {
             const result = buildProductionFlow({
-                targetItemId: 'bar_titanium',
+                targetItemId: 'titanium_bar',
                 targetAmount: 60
             }, buildings, corporations, levels);
 
             // Should have the normal production nodes plus the launcher
             const launcherNode = result.nodes.find(n => n.buildingId === 'orbital_cargo_launcher');
             expect(launcherNode).toBeDefined();
-            
-            expect(launcherNode!.outputItem).toBe('bar_titanium');
+
+            expect(launcherNode!.outputItem).toBe('titanium_bar');
             expect(launcherNode!.buildingCount).toBe(6); // 60 items / 10 items per launcher
             expect(launcherNode!.outputAmount).toBe(10); // 10 items/min per launcher
             expect((launcherNode as any).pointsPerItem).toBe(2); // From mock data
@@ -448,7 +448,7 @@ describe('buildProductionFlow', () => {
 
         it('should not add Orbital Cargo Launcher for items not used by corporations', () => {
             const result = buildProductionFlow({
-                targetItemId: 'ore_titanium',
+                targetItemId: 'titanium_ore',
                 targetAmount: 75
             }, buildings, corporations, levels);
 
@@ -458,16 +458,16 @@ describe('buildProductionFlow', () => {
 
         it('should create proper edge to Orbital Cargo Launcher', () => {
             const result = buildProductionFlow({
-                targetItemId: 'bar_titanium',
+                targetItemId: 'titanium_bar',
                 targetAmount: 60
             }, buildings, corporations, levels);
 
             // Find edge to launcher
             const launcherNodeId = 'orbital_cargo_launcher_-1_bar_titanium';
             const edgeToLauncher = result.edges.find(e => e.to === launcherNodeId);
-            
+
             expect(edgeToLauncher).toBeDefined();
-            expect(edgeToLauncher!.itemId).toBe('bar_titanium');
+            expect(edgeToLauncher!.itemId).toBe('titanium_bar');
             expect(edgeToLauncher!.amount).toBe(60); // Should show full flow rate
         });
 
@@ -480,10 +480,10 @@ describe('buildProductionFlow', () => {
 
             const launcherNode = result.nodes.find(n => n.buildingId === 'orbital_cargo_launcher');
             expect(launcherNode).toBeDefined();
-            
+
             expect((launcherNode as any).pointsPerItem).toBe(10); // From mock data
             expect((launcherNode as any).totalPoints).toBe(1500); // Level 2 cost
-            
+
             // 30 items/min * 10 points/item = 300 points/min
             // 1500 points / 300 points/min = 5 minutes
             expect((launcherNode as any).launchTime).toBe(5);
@@ -491,13 +491,13 @@ describe('buildProductionFlow', () => {
 
         it('should handle fractional launcher counts correctly', () => {
             const result = buildProductionFlow({
-                targetItemId: 'bar_titanium',
+                targetItemId: 'titanium_bar',
                 targetAmount: 25 // Not divisible by 10
             }, buildings, corporations, levels);
 
             const launcherNode = result.nodes.find(n => n.buildingId === 'orbital_cargo_launcher');
             expect(launcherNode).toBeDefined();
-            
+
             expect(launcherNode!.buildingCount).toBe(2.5); // 25 / 10 = 2.5 launchers
         });
     });
